@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.2 (UNKNOWN-17d59c9; 2018-09-26T15:16:30-0700) JAXWS-RI/2.3.1 JAXWS-API/2.3.1 JAXB-RI/2.3.1 JAXB-API/2.3.1 svn-revision#unknown. --><xs:schema xmlns:tns="http://sw/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://sw/">
+
+<xs:element name="BuscarProducto" type="tns:BuscarProducto"/>
+
+<xs:element name="BuscarProductoResponse" type="tns:BuscarProductoResponse"/>
+
+<xs:element name="CrearPedido" type="tns:CrearPedido"/>
+
+<xs:element name="CrearPedidoResponse" type="tns:CrearPedidoResponse"/>
+
+<xs:element name="CrearProducto" type="tns:CrearProducto"/>
+
+<xs:element name="CrearProductoResponse" type="tns:CrearProductoResponse"/>
+
+<xs:element name="EliminarProducto" type="tns:EliminarProducto"/>
+
+<xs:element name="EliminarProductoResponse" type="tns:EliminarProductoResponse"/>
+
+<xs:complexType name="CrearPedido">
+<xs:sequence>
+<xs:element name="medicamento" type="tns:pedido" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pedido">
+<xs:sequence>
+<xs:element name="dis" type="tns:distribuidor" minOccurs="0"/>
+<xs:element name="ID_pedido" type="xs:int"/>
+<xs:element name="med" type="tns:medicamento" minOccurs="0"/>
+<xs:element name="suc" type="tns:sucursal" minOccurs="0"/>
+<xs:element name="total" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="distribuidor">
+<xs:sequence>
+<xs:element name="id_dis" type="xs:int"/>
+<xs:element name="listP" type="tns:pedido" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="medicamento">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="id_medicamento" type="xs:int"/>
+<xs:element name="listP" type="tns:pedido" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="tipoM" type="tns:tipoMedicamento" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoMedicamento">
+<xs:sequence>
+<xs:element name="id_tmedicamento" type="xs:int"/>
+<xs:element name="med" type="tns:medicamento" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sucursal">
+<xs:sequence>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="id_suc" type="xs:int"/>
+<xs:element name="listP" type="tns:pedido" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearPedidoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BuscarProducto">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BuscarProductoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:medicamento" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearProducto">
+<xs:sequence>
+<xs:element name="medicamento" type="tns:medicamento" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearProductoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EliminarProducto">
+<xs:sequence>
+<xs:element name="nombreP" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EliminarProductoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
